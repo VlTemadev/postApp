@@ -1,0 +1,20 @@
+{% extends '../base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Удалить пост{% endblock %}
+
+{% block content %}
+{% if request.user == post.userPost %}
+    <form method="post">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="title is-2">Удалить пост?</h2>
+                {% csrf_token %}
+                <button class="btn bg-danger" style="color:white;" >Да</button>
+                <a href="{% url 'postt' %}" style="color:white; background-color: #212529;" class="btn">Нет</a>
+            </div>
+        </div>
+    </form>
+{% else %}
+{% endif %}
+
+{% endblock %}

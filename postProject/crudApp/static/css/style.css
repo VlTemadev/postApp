@@ -1,0 +1,34 @@
+
+body {
+    background-color: #212529;
+}
+.closed{
+    display: none;
+}
+
+.add_post {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    color: white;
+    font-size: 35px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.contend {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.card-hed {
+    border-bottom: solid white 1px;
+}

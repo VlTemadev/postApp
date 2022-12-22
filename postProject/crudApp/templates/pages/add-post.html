@@ -1,0 +1,28 @@
+{% extends '../base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Добавить пост{% endblock %}
+
+{% block content %}
+<style>
+    #id_title, #id_content {
+    width: 100%;
+    border: 1px solid #48c78e;
+    padding: 10px;
+</style>
+{% if user.is_authenticated %}
+    <form method="post">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="title">Добавить</h2>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn bg-success text-light mt-3">Добавить</button>
+            </div>
+        </div>
+    </form>
+{% else %}
+    <button class="btn bg-primary text-light mt-3 mb-3" type="submit">Log in</button>
+    <p style="color: white" class="has-text-centered">Don't have an account? <a href="{% url 'signUp' %}">Create an account</a>.</p>
+{% endif %}
+
+{% endblock %}

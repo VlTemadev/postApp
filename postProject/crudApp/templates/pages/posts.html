@@ -1,0 +1,31 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+    <div class="contend">
+    <h1 class="title">Последние посты</h1>
+{% for post in posts %}
+        <div style="background-color: #212529;" class="card text-light mb-3">
+            <div class="card-body">
+                <div class="card-hed p-0">
+                    <h3 class="title mb-1">{{ post.userPost.username }}</h3>
+                    <h6 class="subtitle mb-2">{{ post.postDate }}</h6>
+                </div>
+                
+                <p class="mt-2">{{ post.content|truncatewords:20}}</p>
+                <a href="{{ post.get_absolute_url }}" class="btn bg-primary text-light">Читать</a>
+           </div>
+        </div>
+
+{% endfor %}
+    </div>
+{% if user.is_authenticated %}
+    <div class="add_post bg-success">
+        <a href="{% url 'addPost' %}"><i class="fa-solid fa-plus" style="color: white;"></i></a>
+    </div>
+{% else %}
+{% endif %}   
+
+{% endblock %}

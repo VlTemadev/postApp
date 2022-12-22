@@ -1,0 +1,36 @@
+{% extends '../base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Добавить пост{% endblock %}
+
+{% block content %}
+<style>
+    #id_title, #id_content {
+    width: 100%;
+    border: 1px solid #212529;
+    padding: 10px;
+}
+</style>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" aria-current="page"><a href="{% url 'postt' %}"><i style="font-size: 30px; color: white;" class="fa-solid fa-arrow-left"></i></a></li>
+  </ol>
+</nav>
+{% if request.user == post.userPost %}
+    <form method="post">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="title">Изменить пост</h2>
+                {% csrf_token %}
+                <textarea name="content" cols="40" rows="10" class="textarea" required="" id="id_content">{{ post.content }}</textarea>
+                <button class="btn bg-primary text-light">Изменить</button>
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </form>
+
+    <div class="add_post bg-success">
+        <a href="{% url 'addPost' %}"><i class="fa-solid fa-plus" style="color: white;"></i></a>
+    </div>
+{% endblock %}

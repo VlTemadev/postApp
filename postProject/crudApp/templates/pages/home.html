@@ -1,0 +1,19 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block title %}Main page{% endblock %}
+
+{% block content %}
+    <div style="color: white;" id="content">
+        <h1 class="title" id="title">Welcome to <span class="has-text-link">our platform</span></h1>
+        <p class="subtitle" id="subtitle"><strong class="has-text-link">our platform</strong> Lorem ipsum dolor sit amet consectetur adipisicing, elit. Sapiente, amet, expedita sequi itaque obcaecati doloremque sunt inventore impedit, eos dolore accusantium quidem nobis saepe error molestiae fuga delectus iure similique.
+        In dolore esse doloremque iure animi pariatur dicta hic molestiae. Error maiores hic doloribus sunt esse similique odio repudiandae totam magnam itaque eaque provident accusamus, dolorum quod praesentium doloremque! Vitae.
+        Similique praesentium tenetur nihil quibusdam veniam dolorem dolore fugit libero adipisci voluptatem aperiam aspernatur quae omnis, blanditiis ex minus nostrum id, mollitia ea laudantium, dicta atque obcaecati ipsam! Repellendus, natus.</p>
+        {% if user.is_authenticated %}
+        <a href="{% url 'postt' %}" class="btn btn-primary w-100 mb-2">Посты</a>
+        <a href="{% url 'addPost' %}" class="btn btn-success w-100">Добавить пост</a>
+        {% else %}
+            <a class="btn btn-primary w-100 mb-2" href="{% url 'signUp' %}"><i class="fas fa-sign-in-alt"></i>&nbsp;Sign up</a>
+            <a class="btn btn-primary w-100"  href="{% url 'logIn' %}"><i class="fas fa-door-open"></i>&nbsp;Log in</a>
+        {% endif %}
+    </div>
+{% endblock %}

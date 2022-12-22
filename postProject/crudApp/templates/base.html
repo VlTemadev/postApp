@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Heder begin -->
+       <nav style="" class="navbar navbar-expand-lg bg-light">
+            <div style="border-radius: 20px;" class="container bg-light">
+            <a class="navbar-brand text-dark" href="{% url 'home' %}"><i style="font-size: 30px;"class="fa-solid fa-house"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+                <div class="offcanvas offcanvas-start bg-dark" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                  <div class="offcanvas-header text-light">
+                    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                  <div class="offcanvas-body" style="flex-direction: row-reverse;">
+                    <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                     <li class="nav-item p-1">
+                        <a href="{% url 'postt' %}" class="btn btn-primary w-100">Посты</a>
+                    </li>
+                    <li class="nav-item p-1 bg-outline-info">
+                        <a href="{% url 'addPost' %}" class="btn btn-success w-100">Добавить пост</a>
+                    </li>
+                        <li class="nav-item p-1 bg-outline-info">
+                            <a href="{% url 'logoutUser' %}" class="btn btn-primary w-100">Logout</a>
+                        </li>
+                      {% else %}
+                      <li class="nav-item p-1 bg-outline-info">  
+                        <a class="btn btn-primary w-100" href="{% url 'signUp' %}"><i class="fas fa-sign-in-alt"></i>&nbsp;Sign up</a>
+                        </li>
+                          <li class="nav-item p-1 bg-outline-info">
+                             <a class="btn btn-primary w-100"  href="{% url 'logIn' %}"><i class="fas fa-door-open"></i>&nbsp;Log in</a>
+                                   </li>     
+                                      {% endif %}
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+        </nav>
+
+      <!-- Heder end --> 
+        <div class="container mt-3 mb-3">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+            
+
+       
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js" integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>
